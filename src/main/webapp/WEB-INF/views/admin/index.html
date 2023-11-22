@@ -32,7 +32,7 @@
 
             <th:block th:switch="${view}">
                 <main th:case="dashboard" th:insert="admin/layout/index::dashboard"></main>
-                <main th:case="catalog" th:insert="admin/layout/catalog/index::catalog(${catalogs})"></main>
+                <main th:case="catalog" th:insert="admin/layout/catalog/index::catalog(${catalogs},${current_page},${total_page},${size})"></main>
                 <main th:case="catalog_add" th:insert="admin/layout/catalog/add::catalog-add"></main>
                 <main th:case="catalog_edit" th:insert="admin/layout/catalog/edit::catalog-edit(${cat})"></main>
                 <main th:case="product" th:insert="admin/layout/product/index::product"></main>

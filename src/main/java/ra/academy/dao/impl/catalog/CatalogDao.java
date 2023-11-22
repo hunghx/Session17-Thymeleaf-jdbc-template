@@ -17,6 +17,20 @@ public class CatalogDao implements ICatalogDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+
+    @Override
+    public List<Catalog> findAll(int limit, int offset) {
+        String sql = "select * from catalog limit "+limit+" offset "+offset+"";
+        List<Catalog> list = jdbcTemplate.query(sql,
+                (rs, rowNum) -> {
+                    Catalog cat = new Catalog();
+                    cat.setId(rs.getLong("id"));
+                    cat.setName(rs.getString("name"));
+                    cat.setDescription(rs.getString("description"));
+                    return cat;
+                });
+        return list;
+    }
     @Override
     public List<Catalog> findAll() {
         String sql = "select * from catalog";

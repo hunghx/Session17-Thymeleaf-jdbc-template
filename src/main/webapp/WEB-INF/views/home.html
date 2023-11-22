@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- chú ý để sử dụng cú pháp thymeleaf -->
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:insert="assets/navbar :: nav(10,'Hồ Xuân Hùng')"></th:block>
+<h1>Đây là trang chủ</h1>
+<!--th:uext-->
+<h2 th:text="#{message.title}">vet</h2>
+<p th:text="#{message.content}">ferffer</p>
+<!--thẻ trống <th:block></th:block> -->
+<!--th:utext-->
+<th:block th:utext="${html}"></th:block>
+<p th:text="${name+'-'+age+'-'+(gen?'Nam':'Nữ')}"></p>
+<p th:text="|${name}-${age}-${gen?'Nam':'Nữ'}|"></p>
+<ul th:object="${student}">
+    <li th:text="*{id}"></li>
+    <li th:text="*{name}"></li>
+    <li th:text="*{age}"></li>
+</ul>
+
+<!--đường dẫn-->
+<ul>
+<!--    /demo?id=1-->
+    <li><a th:href="@{/demo(id=${student.id})}">/demo?id=1</a></li>
+    <li><a th:href="@{http://localhost:8080/demo(id=${student.id})}">/demo?id=1</a></li>
+    <li><a th:href="@{/demo/{id}/link(id=${student.id})}">/demo/1/link</a></li>
+</ul>
+<!--Foreach - duyệt mảng / duyệt object-->
+<ul>
+    <li th:each="stu,loop : ${list}" th:text="${loop.count+'-'+stu.name}"></li>
+</ul>
+<!--object-->
+<ul>
+    <li th:each="props :${student}" th:text="${props.id}">
+
+    </li>
+</ul>
+
+<th:block th:insert="~{assets/navbar :: foot}"></th:block>
+
+
+<!--if else-->
+<a th:if="${isLogin}" href="/Login">Login</a>
+<a th:unless="${isLogin}" href="/Logout">Hùng hx</a>
+<!--switch case-->
+<th:block th:switch="${gen}">
+    <li th:case="true" th:text="Nam"></li>
+    <li th:case="false" th:text="Nữ"></li>
+    <li th:case="*" th:text="BD"></li>
+</th:block>
+<!---->
+</body>
+</html>

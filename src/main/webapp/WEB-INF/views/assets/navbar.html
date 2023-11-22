@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav id="main" th:fragment="nav(id,name)">
+  <h1>Đây là thanh điều hướng</h1>
+    <h3 th:text="${name+'-'+id}"></h3>
+</nav>
+<footer th:fragment="foot">
+    <p>@CopyRight by Hồ Xuân Hùng</p>
+</footer>
+</body>
+</html>
